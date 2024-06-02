@@ -52187,6 +52187,22 @@
 			"return_type": "void",
 			"build": "323"
 		},
+		"0x7B335F84501145BB": {
+			"name": "_NETWORK_INVITE_GET_JOIN_FAIL_REASON",
+			"jhash": "",
+			"comment": "Retrieves the failed invite join alert reason",
+			"params": [],
+			"return_type": "const char*",
+			"build": "3179"
+		},
+		"0x8EF5F5811A940F82": {
+			"name": "_NETWORK_INVITE_CLEAR_JOIN_FAIL_REASON",
+			"jhash": "",
+			"comment": "Clears the failed invite join alert reason",
+			"params": [],
+			"return_type": "void",
+			"build": "3179"
+		},
 		"0xC74C33FCA52856D5": {
 			"name": "NETWORK_SESSION_HOST_SINGLE_PLAYER",
 			"jhash": "0xF3B1CA85",
