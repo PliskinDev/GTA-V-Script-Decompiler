@@ -249,11 +249,14 @@ namespace Decompiler
                 if (Function.Instructions[i].OriginalOpcode == Opcode.SWITCH)
                     break;
 
-                pattern += ((uint)Function.Instructions[i].OriginalOpcode).ToString("X").PadLeft(2, '0');
+                if (Properties.Settings.Default.IsRDR2)
+                    pattern += ((uint)Function.Instructions[i].UnmappedOpcode).ToString("X").PadLeft(2, '0');
+                else
+                    pattern += ((uint)Function.Instructions[i].OriginalOpcode).ToString("X").PadLeft(2, '0');
 
                 foreach (var op in Function.Instructions[i].Operands)
                 {
-                    if (Function.Instructions[i].OriginalOpcode is Opcode.LOCAL_U8 or Opcode.LOCAL_U8_LOAD or Opcode.LOCAL_U8_STORE or Opcode.ENTER)
+                    if (Function.Instructions[i].OriginalOpcode is Opcode.LOCAL_U8 or Opcode.LOCAL_U8_LOAD or Opcode.LOCAL_U8_STORE or Opcode.ENTER or Opcode.LEAVE)
                     {
                         pattern += " " + ((sbyte)op).ToString("X").PadLeft(2, '0');
                     }

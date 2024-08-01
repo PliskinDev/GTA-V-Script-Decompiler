@@ -16,11 +16,11 @@ namespace Decompiler.Patches
 
             for (var i = start; i < end; i++)
             {
-                bytes.Add((byte)Opcode.DROP);
+                bytes.Add(Instruction.UnmapOpcode(Opcode.DROP));
 
                 foreach (var _ in Function.Instructions[i].Operands)
                 {
-                    bytes.Add(0);
+                    bytes.Add(Instruction.UnmapOpcode(Opcode.NOP));
                 }
             }
 

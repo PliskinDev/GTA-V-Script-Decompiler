@@ -23,20 +23,20 @@ namespace Decompiler.Patches
             if (Function.NumReturns != 0)
             {
                 if (ReturnValue <= 7)
-                    bytes.Add((byte)(((byte)Opcode.PUSH_CONST_0) + ReturnValue));
+                    bytes.Add(Instruction.UnmapOpcode((Opcode)(((byte)Opcode.PUSH_CONST_0) + ReturnValue)));
                 else if (ReturnValue <= 65535)
                 {
-                    bytes.Add((byte)Opcode.PUSH_CONST_S16);
+                    bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_S16));
                     bytes.AddRange(BitConverter.GetBytes((short)ReturnValue));
                 }
                 else
                 {
-                    bytes.Add((byte)Opcode.PUSH_CONST_U32);
+                    bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_U32));
                     bytes.AddRange(BitConverter.GetBytes(ReturnValue));
                 }
             }
 
-            bytes.Add((byte)Opcode.LEAVE);
+            bytes.Add(Instruction.UnmapOpcode(Opcode.LEAVE));
             bytes.Add((byte)Function.NumParams);
             bytes.Add((byte)Function.NumReturns);
 

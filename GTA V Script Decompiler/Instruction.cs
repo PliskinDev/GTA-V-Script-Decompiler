@@ -320,6 +320,14 @@ namespace Decompiler
             throw new InvalidOperationException("Invalid RDR2 opcode");
         }
 
+        public static byte UnmapOpcode(Opcode opcode)
+        {
+            if (!Properties.Settings.Default.IsRDR2)
+                return (byte)opcode;
+
+            return (byte)ShuffledOpcodes.First(x => x.Value == opcode).Key;
+        }
+
         public Opcode Opcode { get; private set; }
         public Opcode OriginalOpcode { get; private set; }
         public byte[] Operands { get; private set; }
@@ -345,7 +353,7 @@ namespace Decompiler
             Opcode = Opcode.NOP;
         }
 
-        public int UnmappedOpcode { get { return ShuffledOpcodes.First(x => x.Value == Opcode).Key; } }
+        public int UnmappedOpcode { get { return UnmapOpcode(OriginalOpcode); } }
 
 		public int Offset { get; }
 

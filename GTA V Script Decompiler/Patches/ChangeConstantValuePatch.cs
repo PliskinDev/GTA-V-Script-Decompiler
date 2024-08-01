@@ -32,25 +32,25 @@ namespace Decompiler.Patches
             List<byte> bytes = new();
 
             if (constantType == ConstantType.SHORTHAND)
-                bytes.Add((byte)(((byte)Opcode.PUSH_CONST_0) + Value));
+                bytes.Add(Instruction.UnmapOpcode((Opcode)(((byte)Opcode.PUSH_CONST_0) + Value)));
             else if (constantType == ConstantType.U8)
             {
-                bytes.Add((byte)Opcode.PUSH_CONST_U8);
+                bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_U8));
                 bytes.Add((byte)Value);
             }
             else if (constantType == ConstantType.U16)
             {
-                bytes.Add((byte)Opcode.PUSH_CONST_S16);
+                bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_S16));
                 bytes.AddRange(BitConverter.GetBytes((short)Value));
             }
             else if (constantType == ConstantType.U24)
             {
-                bytes.Add((byte)Opcode.PUSH_CONST_U24);
+                bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_U24));
                 bytes.AddRange(BitConverter.GetBytes(Value).Skip(1)); // todo does this work?
             }
             else if (constantType == ConstantType.U32)
             {
-                bytes.Add((byte)Opcode.PUSH_CONST_U32);
+                bytes.Add(Instruction.UnmapOpcode(Opcode.PUSH_CONST_U32));
                 bytes.AddRange(BitConverter.GetBytes(Value));
             }
 
