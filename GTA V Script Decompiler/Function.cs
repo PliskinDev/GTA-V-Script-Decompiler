@@ -522,7 +522,7 @@ Start:
 		/// </summary>
 		public void BuildInstructions()
 		{
-			Offset = CodeBlock[4];
+			Offset = 0;
 			Instructions = new List<Instruction>();
 			InstructionMap = new Dictionary<int, int>();
 			int curoff;
