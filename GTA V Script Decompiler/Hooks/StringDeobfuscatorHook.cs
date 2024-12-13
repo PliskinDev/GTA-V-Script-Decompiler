@@ -4,6 +4,8 @@ using String = Decompiler.Ast.String;
 
 namespace Decompiler.Hooks
 {
+// Deobfuscator broke on b3407. TODO: update and implement constant time evaluation
+#if false
     internal class StringDeobfuscator_GetStringWithRotate_Hook : FunctionHook
     {
         public override uint[] Hashes => new uint[] { 0x3270A688, 0xFA2B0B15 };
@@ -108,4 +110,5 @@ namespace Decompiler.Hooks
             }
         }
     }
+#endif
 }
